@@ -102,14 +102,15 @@ class Client(object):
         >>> c.open_by_key('0BmgG6nO_6dprdS1MN3d3MkdPa142WFRrdnRRUWl1UFE')
 
         """
-        feed = self.get_spreadsheets_feed()
-        for elem in feed.findall(_ns('entry')):
-            alter_link = finditem(lambda x: x.get('rel') == 'alternate',
-                                  elem.findall(_ns('link')))
-            spreadsheet_id = extract_id_from_url(alter_link.get('href'))
-            if spreadsheet_id == key:
-                return Spreadsheet(self, elem)
-        else:
+        url = 'https://spreadsheets.google.com/feeds/worksheets/{}/private/full'.format(key) # XXX
+
+        try:
+            r = self.session.get(url)
+            elem = ElementTree.fromstring(r.content)
+            spreadsheet = Spreadsheet(self, elem)
+            spreadsheet._id = key # XXX: This is a workaround that taking true SpreadsheetId.
+            return spreadsheet
+        except:
             raise SpreadsheetNotFound
 
     def open_by_url(self, url):
