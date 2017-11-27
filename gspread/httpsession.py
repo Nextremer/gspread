@@ -33,6 +33,7 @@ class HTTPSession(object):
     def __init__(self, headers=None):
         self.headers = headers or {}
         self.requests_session = requests.Session()
+        self.timeout = 60 # Default timeout is 60 seconds
 
     def request(self, method, url, data=None, params=None, headers=None, files=None, json=None):
         if data and isinstance(data, bytes):
@@ -62,7 +63,7 @@ class HTTPSession(object):
         except AttributeError:
             raise RequestError("HTTP method '{}' is not supported".format(method))
 
-        response = func(url, data=data, params=params, headers=request_headers, files=files, json=json)
+        response = func(url, data=data, params=params, headers=request_headers, files=files, json=json, timeout=self.timeout)
 
         if response.status_code > 399:
             raise RequestError(response.status_code, "{0}: {1}".format(
