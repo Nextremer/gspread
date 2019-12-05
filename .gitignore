@@ -1,6 +1,9 @@
 *.pyc
-tests/tests.config
 tests/creds.json
+*.todo
+
+build/
+dist/
 
 # virtualenv
 env/
