@@ -1,6 +1,80 @@
 Release History
 ===============
 
+3.1.0 (2018-11-27)
+------------------
+
+* Dropped Python 2.6 support
+
+* Fixed KeyError in urllib.quote in Python 2 (#605, #558)
+* Fixed Worksheet.title being out of sync after using update_title (#542 by @ryanpineo)
+* Fix parameter typos in docs (#616 by @bryanallen22)
+* Miscellaneous docs fixes (#604 by @dgilman)
+* Fixed typo in docs (#591 by @davidefiocco)
+
+* Added a method to copy spreadsheets (#625 by @dsask)
+* Added `with_link` attribute when sharing / adding permissions (#621 by @epicfaace)
+* Added ability to duplicate a worksheet (#617)
+* Change default behaviour of numericise function #499 (#502 by @danthelion)
+* Added stacklevel=2 to deprecation warnings
+
+
+3.0.1 (2018-06-30)
+------------------
+
+* Fixed #538 (#553 by @ADraginda)
+
+
+3.0.0 (2018-04-12)
+------------------
+
+* This version drops Google Sheets API v3 support.
+    - API v4 was the default backend since version 2.0.0.
+    - All v4-related code has been moved from `gspread.v4` module to `gspread` module.
+
+
+2.1.1 (2018-04-08)
+------------------
+
+* Fixed #533 (#534 by @reallistic)
+
+
+2.1.0 (2018-04-07)
+------------------
+
+* URL encode the range in the value_* functions (#530 by @aiguofer)
+* Open team drive sheets by name (#527 by @ryantuck)
+
+
+2.0.1 (2018-04-01)
+------------------
+
+* Fixed #518
+* Include v4 in setup.py
+* Fetch all spreadsheets in Spreadsheet.list_spreadsheet_files (#522 by @aiguofer)
+
+
+2.0.0 (2018-03-11)
+------------------
+
+* Ported the library to Google Sheets API v4.
+
+  This is a transition release. The v3-related code is untouched,
+  but v4 is used by default. It is encouraged to move to v4 since
+  the API is faster and has more features.
+
+  API v4 is a significant change from v3. Some methods are not
+  backward compatible, so there's no support for this compatibility
+  in gspread either.
+
+  These methods and properties are not supported in v4:
+
+  * `Spreadsheet.updated`
+  * `Worksheet.updated`
+  * `Worksheet.export()`
+  * `Cell.input_value`
+
+
 0.6.2 (2016-12-20)
 ------------------
 

@@ -4,10 +4,19 @@ Manage your spreadsheets with _gspread_ in Python.
 
 Features:
 
+* Google Sheets API v4.
 * Open a spreadsheet by its **title** or **url**.
 * Extract range, entire row or column values.
-* Independent of Google Data Python client library.
 * Python 3 support.
+
+## Installation
+
+```sh
+pip install gspread
+```
+
+Requirements: Python 2.7+ or Python 3+.
+
 
 ## Basic Usage
 
@@ -97,10 +106,6 @@ val = worksheet.acell('B1').value
 
 # With coords
 val = worksheet.cell(1, 2).value
-
-# To get a cell formula
-cell = worksheet.acell('B1') # or .cell(1, 2)
-cell.input_value
 ```
 
 ### Getting All Values From a Row or a Column
@@ -172,52 +177,13 @@ for cell in cell_list:
 worksheet.update_cells(cell_list)
 ```
 
-## Installation
-
-### Requirements
-
-Python 2.6+ or Python 3+
-
-### From PyPI
-
-```sh
-pip install gspread
-```
-
-### From GitHub
-
-```sh
-git clone https://github.com/burnash/gspread.git
-cd gspread
-python setup.py install
-```
-
-## Documentation
-* [Getting Google API's credentials](http://gspread.readthedocs.io/en/latest/oauth2.html)
-* [gspread API Reference](http://gspread.readthedocs.org/)
-
-## Testing
-
-1. Go to Google Drive and create an empty spreadsheet you will use for testing.
-2. Create a configuration file from config dummy:
-
-    ```sh
-    cp tests/tests.config.example tests/tests.config
-    ```
-
-3. Open `tests.config` with your favorite editor and fill up config parameters with your testing spreadsheet's info.
-4. Install [Nose](http://nose.readthedocs.org).
-5. Download credentials json file(see [doc](http://gspread.readthedocs.io/en/latest/oauth2.html#using-signed-credentials)),
-rename it to `creds.json` and put it into the tests folder.
-6. Run tests:
-
-    ```sh
-    nosetests
-    ```
+## [Documentation](http://gspread.readthedocs.org/)
 
 ## [Contributors](https://github.com/burnash/gspread/graphs/contributors)
 
 ## How to Contribute
+
+Please make sure to take a moment and read the [Code of Conduct](https://github.com/burnash/gspread/blob/master/.github/CODE_OF_CONDUCT.md).
 
 ### Ask Questions
 
@@ -229,7 +195,10 @@ Please report bugs and suggest features via the [GitHub Issues](https://github.c
 
 Before opening an issue, search the tracker for possible duplicates. If you find a duplicate, please add a comment saying that you encountered the problem as well.
 
+### Improve Documentation
+
+If you spot areas in [documentation](https://gspread.readthedocs.io/) that you think could be better, please submit a pull request. Docs are located in [`docs`](https://github.com/burnash/gspread/tree/master/docs) folder, use [reStructuredText](http://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html#rst-index) markup and rendered by [Sphinx](http://www.sphinx-doc.org/).
+
 ### Contribute code
 
-* Check the [GitHub Issues](https://github.com/burnash/gspread/issues) for open issues that need attention.
-* Follow the [Contributing to Open Source](https://guides.github.com/activities/contributing-to-open-source/) Guide.
+Please make sure to read the [Contributing Guide](https://github.com/burnash/gspread/blob/master/.github/CONTRIBUTING.md) before making a pull request.
